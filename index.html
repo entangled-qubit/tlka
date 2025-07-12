@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Start - Landing Page</title>
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Header / Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <div class="logo">
+        <img src="tlka.jpg" alt="TLKA" class="logo-image">
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#stories">Stories</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="home" class="hero-section">
+    <div class="background-photos"></div>
+    <div class="container hero-container">
+      <div class="hero-photo">
+        <!-- Photo of Kabir - will cycle through multiple photos -->
+        <img src="kabir1.jpg" alt="In Loving Memory of Kabir" class="memorial-photo active" data-photo="kabir1">
+        <img src="kabir2.jpg" alt="In Loving Memory of Kabir" class="memorial-photo" data-photo="kabir2">
+        <img src="kabir3.jpg" alt="In Loving Memory of Kabir" class="memorial-photo" data-photo="kabir3">
+      </div>
+      <div class="hero-content">
+        <h1>In Loving Memory</h1>
+        <h2 class="person-name">Kabir Arora</h2>
+        <p class="person-dates">2004 - Forever</p>
+        <p class="person-intro">
+          A dreamer, a very, very big dreamer. A visionary. A foodie. A car lover. Someone who embraced life fully and lived every moment with joy. A techie, a brilliant speaker, and a mind capable of deep analytical thinking on any topic. Yes, a little lazy at times, but one of the most unique minds to have ever been among us. A business thinker with ambitions to build empires.
+        </p>
+        <p class="person-intro">
+          Who is this kind of person? Nothing less than a legend. He is <em>The Legend</em>, Kabir Arora.
+        </p>
+        <p class="person-intro">
+          Most importantly, he was a spiritual soul, someone who understood the truths of life and death at a remarkably young age. His mind was truly one of a kind. His thinking stood apart from the world. He often used to say, "Mera dimaag normal duniya ke jaisa nahi chalta, main duniya jaisa nahi sochta hoon." And that was the truth.
+        </p>
+        <p class="person-intro">
+          Whenever I suggested a conventional path, he would respond, "Aise normal, usual path follow nahi karna... different karna hai, sabse bada karna hai." He saw the world with greater clarity than I, or any of us in the family did.
+        </p>
+        <p class="person-intro">
+          He deeply admired Steve Jobs, Cristiano Ronaldo, and Virat Kohli whom he lovingly called his "bhai." He dreamed of being as influential and impactful as them. His interests were as varied as they were intense: entrepreneurship, filmmaking, acting, creating videos, singing, data science, philanthropy...
+        </p>
+        <p class="person-intro">
+          Everything he did, he did with his whole heart, boldly, passionately, and without hesitation.
+        </p>
+        <p class="person-intro">
+          He lit up every room he walked into. His laughter, his conversations, his humor, even his anger, were magnetic. He was the one who brought energy to every gathering, who made sure the house never fell silent.
+        </p>
+        <p class="person-quote">
+          "Kabir is not just a person. He is a soch. A presence. A force. A legend."
+        </p>
+        <div class="hero-actions">
+          <a href="#gallery" class="cta-btn secondary">View Gallery</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stories Section -->
+  <section id="stories" class="services-section">
+    <div class="container">
+      <h2>Stories</h2>
+      <div class="services-carousel">
+        <div class="carousel-slides"></div>
+      </div>
+      <div class="carousel-dots"></div>
+      <div class="stories-links" style="text-align:center; margin-top:1.5rem;">
+        <a href="stories.html#share-form" class="cta-btn primary" style="margin-right:1rem;">Share Memories</a>
+        <a href="stories.html" class="cta-btn secondary" style="margin-right:1rem;">Read more stories</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <h2>Contact Us</h2>
+      <form class="contact-form">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Link to external JS -->
+  <script src="script.js"></script>
+  <script src="google-drive-integration.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Minimal Stories Debug</title>
+  <style>
+    body {
+      background: #fffbe9;
+      font-family: Arial, sans-serif;
+      color: #222;
+    }
+    .stories-list {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 0 2vw;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .story-block {
+      border: 2px solid red;
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px #eee;
+    }
+    .story-title {
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #bfa181;
+      margin-bottom: 0.3rem;
+    }
+    .story-author {
+      font-size: 1rem;
+      color: #888;
+      margin-bottom: 0.7rem;
+      font-style: italic;
+    }
+    .story-short {
+      font-size: 1.1rem;
+      margin-bottom: 0.7rem;
+      color: #222;
+      background: #fff8f0;
+      padding: 0.3rem 0.5rem;
+      border-radius: 6px;
+    }
+    .story-extra {
+      margin-top: 0.5rem;
+    }
+    .story-extra img {
+      max-width: 100px;
+      border-radius: 6px;
+      margin-top: 0.5rem;
+    }
+    .story-extra audio {
+      width: 90%;
+      margin-top: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1 style="text-align:center; color:#bfa181;">Minimal Stories Debug</h1>
+  <div class="stories-list" id="stories-list"></div>
+  <script>
+    const stories = [
+      {
+        title: 'Unforgettable Road Trip',
+        author: 'Simran Kaur',
+        short: 'We set out with no plan, but Kabir’s sense of adventure...',
+        full: 'We set out with no plan, but Kabir’s sense of adventure made every moment memorable. Every turn became a new story, and every stop was filled with laughter. Kabir’s enthusiasm for life made even the simplest journeys feel extraordinary and full of joy.',
+        audio: 'sample-3s.mp3'
+      },
+      {
+        title: 'The Open Mic Night',
+        author: 'Rahul Verma',
+        short: 'Kabir’s impromptu performance left the whole crowd in awe...',
+        full: 'Kabir’s impromptu performance left the whole crowd in awe and laughter. He had a natural stage presence and could turn any gathering into a celebration. His confidence and humor made every event unforgettable, and his stories are still told today.',
+        image: 'photos_scattered/roadtrip.jpg'
+      },
+      {
+        title: 'Car Rally Champion',
+        author: 'Neha Singh',
+        short: 'No one could match Kabir’s driving skills and his love...',
+        full: 'No one could match Kabir’s driving skills and his love for cars. He was always the first to volunteer for any road trip, and his knowledge about vehicles amazed everyone. His passion for driving brought friends together for countless adventures.'
+      },
+      {
+        title: 'MasterChef Kabir',
+        author: 'Vikram Joshi',
+        short: 'His kitchen experiments were legendary—sometimes delicious...',
+        full: 'His kitchen experiments were legendary—sometimes delicious, sometimes hilarious! Kabir loved to try new recipes and share his creations with friends. Even when things didn’t go as planned, he made every meal an experience to remember and enjoy.'
+      },
+      {
+        title: 'Short Film Director',
+        author: 'Aanya Kapoor',
+        short: 'Kabir’s creative vision brought our stories to life...',
+        full: 'Kabir’s creative vision brought our stories to life on screen. He directed short films that captured the essence of our group’s adventures. His storytelling skills and artistic eye made every project unique and memorable for everyone involved.'
+      },
+      {
+        title: 'Book Club Debater',
+        author: 'Manav Patel',
+        short: 'He could argue any side of a story and make it...',
+        full: 'He could argue any side of a story and make it sound convincing! Kabir’s debating skills were unmatched, and he loved engaging in thoughtful discussions. His ability to see different perspectives inspired everyone to think more deeply.'
+      },
+      {
+        title: 'The Marathon Mentor',
+        author: 'Riya Malhotra',
+        short: 'Kabir inspired us to run our first marathon together...',
+        full: 'Kabir inspired us to run our first marathon together, something none of us thought we could ever do. He trained with us every morning, pushing us to go further, to believe in ourselves, and to never give up.'
+      },
+      {
+        title: 'Festival of Lights',
+        author: 'Saanvi Gupta',
+        short: 'Diwali with Kabir was always magical...',
+        full: 'Diwali with Kabir was always magical. He would start planning weeks in advance, making lists of decorations, sweets, and gifts for everyone. Kabir loved to involve everyone in the preparations, from stringing up lights to making homemade rangoli at the entrance.'
+      },
+      {
+        title: 'The Science Fair Triumph',
+        author: 'Amit Sharma',
+        short: 'Kabir led our team to victory at the state science fair...',
+        full: 'Kabir led our team to victory at the state science fair, a feat that seemed impossible at the start. He came up with the idea for our project—a solar-powered water purifier—and immediately got to work researching and designing the prototype.'
+      },
+      {
+        title: 'The Midnight Philosopher',
+        author: 'Devansh Singh',
+        short: 'Kabir\'s late-night conversations changed the way we saw the world...',
+        full: 'Kabir\'s late-night conversations changed the way we saw the world. He had a unique perspective on life, always questioning the status quo and encouraging us to think deeply about our beliefs and values.'
+      }
+    ];
+    const storiesList = document.getElementById('stories-list');
+    stories.forEach(story => {
+      const block = document.createElement('div');
+      block.className = 'story-block';
+      block.innerHTML = `
+        <div class="story-title">${story.title}</div>
+        <div class="story-author">by ${story.author}</div>
+        <div class="story-short">${story.short}</div>
+        <div class="story-extra">
+          ${story.audio ? `<audio controls><source src='${story.audio}' type='audio/mpeg'></audio>` : ''}
+          ${story.image ? `<img src='${story.image}' alt='Related'>` : ''}
+        </div>
+      `;
+      storiesList.appendChild(block);
+    });
+  </script>
+</body>
+</html> 

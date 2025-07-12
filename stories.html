@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stories - The Start</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="stories.css">
+</head>
+<body class="stories-bg">
+  <header class="navbar">
+    <div class="container nav-container">
+      <div class="logo">
+        <img src="tlka.jpg" alt="TLKA" class="logo-image">
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html#home">Home</a></li>
+          <li><a href="index.html#about">About</a></li>
+          <li><a href="stories.html" class="active">Stories</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <h1 class="page-heading">Stories</h1>
+    <section id="stories" class="stories-list">
+      <!-- Stories will be injected here by JS -->
+    </section>
+    <div class="share-form-container" id="share-form">
+      <h2 class="share-form-heading">Share Your Story</h2>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSc47OMJH-SxUDVybU4PPtNGk72XEMEifcYXaVclMNbsxeUvig/viewform?embedded=true" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0" style="background:#fff; border-radius:18px; box-shadow:0 2px 16px rgba(191,161,129,0.08);">Loading…</iframe>
+    </div>
+  </main>
+
+  <script src="google-drive-integration.js"></script>
+  <script>
+    console.log('Stories script is running!');
+    
+    // Function to truncate text to approximately 50-60 words
+    function truncateToWords(text, maxWords = 55) {
+        if (!text) return '';
+        
+        // Split into words
+        const words = text.trim().split(/\s+/);
+        
+        // If text is already short enough, return as is
+        if (words.length <= maxWords) {
+            return text;
+        }
+        
+        // Take first maxWords words and join them
+        const truncatedWords = words.slice(0, maxWords);
+        return truncatedWords.join(' ') + '...';
+    }
+
+    // Function to update stories page with data from Google Drive
+    window.updateStoriesPageWithData = function(newStories) {
+        if (!newStories || !Array.isArray(newStories) || newStories.length === 0) {
+            console.log('No valid stories data received for stories page');
+            return;
+        }
+
+        console.log('Updating stories page with', newStories.length, 'stories from Google Drive');
+
+        // Get the stories container
+        const storiesList = document.querySelector('.stories-list');
+        if (!storiesList) {
+            console.error('Stories list container not found');
+            return;
+        }
+
+        // Clear existing stories (including loading message)
+        storiesList.innerHTML = '';
+
+        // Create new stories from the data
+        newStories.forEach((story, idx) => {
+            const id = `story${idx+1}`;
+            const block = document.createElement('article');
+            block.className = 'story-block fade-in';
+            block.id = id;
+
+            // Create media content
+            let mediaContent = '';
+            if (story.mediaUrl) {
+                if (story.mediaUrl.match(/\.(jpg|jpeg|png|gif|webp)$/i)) {
+                    // Image
+                    mediaContent = `<img src="${story.mediaUrl}" alt="${story.title}">`;
+                } else if (story.mediaUrl.match(/\.(mp4|webm|ogg)$/i)) {
+                    // Video
+                    mediaContent = `<video controls><source src="${story.mediaUrl}" type="video/mp4">Your browser does not support the video tag.</video>`;
+                } else if (story.mediaUrl.match(/\.(mp3|wav|ogg)$/i)) {
+                    // Audio
+                    mediaContent = `<audio controls><source src="${story.mediaUrl}" type="audio/mpeg">Your browser does not support the audio element.</audio>`;
+                }
+            }
+
+            // Truncate content for short version (stories page only)
+            const truncatedContent = truncateToWords(story.content, 55);
+            const wordCount = story.content.trim().split(/\s+/).filter(word => word.length > 0).length;
+            const showReadMore = wordCount > 55;
+
+            block.innerHTML = `
+                <div class="story-title">${story.title}</div>
+                <div class="story-author">by ${story.name || 'Anonymous'}</div>
+                <div class="story-short">${truncatedContent}</div>
+                <div class="story-extra">
+                    ${mediaContent}
+                </div>
+                ${showReadMore ? `<a href="#${id}" class="read-more-link">Read more &rarr;</a>` : ''}
+                <div class="story-full" style="display:none; color:var(--text-main); margin-top:1.1rem;">${story.content.replace(/\n/g, '<br>')}</div>
+            `;
+
+            // Read more toggles full text (only if read more link exists)
+            const readMoreLink = block.querySelector('.read-more-link');
+            if (readMoreLink) {
+                readMoreLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get the specific elements for this story
+                    const fullText = block.querySelector('.story-full');
+                    const shortText = block.querySelector('.story-short');
+                    
+                    // Toggle this specific story only
+                    if (fullText.style.display === 'none' || fullText.style.display === '') {
+                        // Show full text, hide short text and read more link
+                        fullText.style.display = 'block';
+                        shortText.style.display = 'none';
+                        readMoreLink.style.display = 'none';
+                    } else {
+                        // Show short text and read more link, hide full text
+                        fullText.style.display = 'none';
+                        shortText.style.display = 'block';
+                        readMoreLink.style.display = 'inline-block';
+                    }
+                    
+                    // Scroll to this story
+                    block.scrollIntoView({behavior:'smooth', block:'center'});
+                });
+            }
+
+            storiesList.appendChild(block);
+            console.log('Rendered story:', story.title);
+        });
+
+        // Show story from hash if present
+        showStoryFromHash();
+    };
+
+    // Show loading message
+    const storiesList = document.querySelector('.stories-list');
+    storiesList.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--text-main);">Loading stories...</div>';
+    
+    // Wait for integration to be ready and load stories
+    function loadStories() {
+        if (window.formManager) {
+            console.log('Integration ready - loading stories');
+            
+            // Check if we have cached data for instant loading
+            if (window.formManager.hasCachedStories()) {
+                console.log('Cached stories found - loading instantly');
+            } else {
+                console.log('No cached stories - fetching fresh data');
+            }
+            
+            window.formManager.updateStoriesPage();
+        } else {
+            console.log('Integration not ready yet, retrying...');
+            setTimeout(loadStories, 50);
+        }
+    }
+    
+    // Start loading after a short delay
+    setTimeout(loadStories, 100);
+    
+    // Fallback: if integration doesn't load within 5 seconds, show sample content
+    setTimeout(() => {
+        if (!window.formManager || !document.querySelector('.story-block')) {
+            console.log('No stories loaded, showing sample content');
+            storiesList.innerHTML = `
+                <article class="story-block fade-in" id="story1">
+                    <div class="story-title">Sample Story</div>
+                    <div class="story-author">by Anonymous</div>
+                    <div class="story-short">This is a sample story to show how the stories page looks when content is loaded. The stories are loaded dynamically from Google Drive, and this is what you'll see when stories are available. Each story shows a preview of about 50-60 words with a "Read more" link to expand the full content.</div>
+                    <div class="story-extra"></div>
+                    <a href="#story1" class="read-more-link">Read more &rarr;</a>
+                    <div class="story-full" style="display:none; color:var(--text-main); margin-top:1.1rem;">This is the full sample story content. When you click "Read more", this expanded text will be shown. The stories page loads content dynamically from Google Drive, and this sample demonstrates how the layout and functionality work. Stories submitted through the form will appear here with the same formatting and features.</div>
+                </article>
+                <article class="story-block fade-in" id="story2">
+                    <div class="story-title">Another Sample</div>
+                    <div class="story-author">by Test User</div>
+                    <div class="story-short">Here's another sample story to demonstrate the layout. The stories page is designed to show multiple stories with proper spacing and formatting. Each story has a title, author, preview text, and optional media content.</div>
+                    <div class="story-extra"></div>
+                </article>
+            `;
+            
+            // Add read more functionality to sample stories
+            const readMoreLink = document.querySelector('.read-more-link');
+            if (readMoreLink) {
+                readMoreLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const block = document.querySelector('#story1');
+                    const full = block.querySelector('.story-full');
+                    const short = block.querySelector('.story-short');
+                    if (full) full.style.display = 'block';
+                    if (short) short.style.display = 'none';
+                    readMoreLink.style.display = 'none';
+                    block.scrollIntoView({behavior:'smooth', block:'center'});
+                });
+            }
+        }
+    }, 5000);
+
+    // Function to show full text for hash
+    function showStoryFromHash() {
+      const hash = window.location.hash;
+      if (hash && hash.startsWith('#story')) {
+        const block = document.querySelector(hash);
+        if (block) {
+          // Only reset all stories if we're navigating to a specific story from hash
+          // This prevents resetting stories on page resize
+          document.querySelectorAll('.story-full').forEach(el => el.style.display = 'none');
+          document.querySelectorAll('.story-short').forEach(el => el.style.display = 'block');
+          document.querySelectorAll('.read-more-link').forEach(el => el.style.display = 'inline-block');
+          const full = block.querySelector('.story-full');
+          const short = block.querySelector('.story-short');
+          const readMoreLink = block.querySelector('.read-more-link');
+          if (full) full.style.display = 'block';
+          if (short) short.style.display = 'none';
+          if (readMoreLink) readMoreLink.style.display = 'none';
+          block.scrollIntoView({behavior:'smooth', block:'center'});
+
+          // Add blink effect after scroll completes
+          setTimeout(() => {
+            block.classList.remove('fade-in'); // Prevent pop-in animation
+            block.classList.remove('story-blink'); // reset if already present
+            // Force reflow to restart animation if needed
+            void block.offsetWidth;
+            block.classList.add('story-blink');
+            // Remove the class after animation ends
+            block.addEventListener('animationend', function handler() {
+              block.classList.remove('story-blink');
+              block.removeEventListener('animationend', handler);
+            });
+          }, 800); // Wait for scroll animation to complete
+        }
+      }
+    }
+    
+    // Store the last hash to prevent unnecessary resets
+    let lastHash = '';
+    
+    // Function to show full text for hash (with hash tracking)
+    function showStoryFromHashWithTracking() {
+      const hash = window.location.hash;
+      
+      // Only process if hash actually changed
+      if (hash !== lastHash) {
+        lastHash = hash;
+        showStoryFromHash();
+      }
+    }
+    // Call immediately after rendering
+    showStoryFromHashWithTracking();
+    // Also attach to DOMContentLoaded for robustness
+    window.addEventListener('DOMContentLoaded', showStoryFromHashWithTracking);
+  </script>
+</body>
+</html> 
