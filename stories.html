@@ -246,6 +246,12 @@
             });
           }, 800); // Wait for scroll animation to complete
         }
+      } else if (hash === '#share-form') {
+        // Handle navigation to share form
+        const shareForm = document.querySelector('#share-form');
+        if (shareForm) {
+          shareForm.scrollIntoView({behavior:'smooth', block:'start'});
+        }
       }
     }
     
