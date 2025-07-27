@@ -187,7 +187,7 @@ function setupCarousel() {
         // Center card: show story with read more link that appears on hover
         if (i === 2) {
           card.innerHTML = `
-            <a class="service-link" href="stories.html#story${(story.originalIndex !== undefined ? story.originalIndex + 1 : stories.indexOf(story) + 1)}">
+            <a class="service-link" href="stories.html#story-${story.id}">
               <h3>${story.title}</h3>
               <div class="story-author"><span class="author-name">${story.name || 'Anonymous'}</span></div>
               <p><span class="story-full clamped">${story.content}</span></p>
@@ -199,7 +199,7 @@ function setupCarousel() {
           // Truncate content for side cards
           const shortContent = story.content.length > 100 ? story.content.substring(0, 100) + '...' : story.content;
           card.innerHTML = `
-            <a class="service-link" href="stories.html#story${(story.originalIndex !== undefined ? story.originalIndex + 1 : stories.indexOf(story) + 1)}">
+            <a class="service-link" href="stories.html#story-${story.id}">
               <h3>${story.title}</h3>
               <div class="story-author"><span class="author-name">${story.name || 'Anonymous'}</span></div>
               <p><span class="story-short">${shortContent}</span></p>
@@ -278,6 +278,64 @@ function setupCarousel() {
       startAutoScroll();
     }
   });
+
+  // Add touch/swipe functionality for mobile
+  let touchStartX = 0;
+  let touchEndX = 0;
+  let touchStartY = 0;
+  let touchEndY = 0;
+  let isSwiping = false;
+
+  carousel.addEventListener('touchstart', function(e) {
+    touchStartX = e.changedTouches[0].screenX;
+    touchStartY = e.changedTouches[0].screenY;
+    isSwiping = false;
+    stopAutoScroll();
+  }, { passive: true });
+
+  carousel.addEventListener('touchmove', function(e) {
+    const touchCurrentX = e.changedTouches[0].screenX;
+    const touchCurrentY = e.changedTouches[0].screenY;
+    const deltaX = Math.abs(touchCurrentX - touchStartX);
+    const deltaY = Math.abs(touchCurrentY - touchStartY);
+    
+    // If horizontal movement is greater than vertical, it's a swipe
+    if (deltaX > deltaY && deltaX > 10) {
+      isSwiping = true;
+      e.preventDefault(); // Prevent scrolling
+    }
+  }, { passive: false });
+
+  carousel.addEventListener('touchend', function(e) {
+    if (!isSwiping) {
+      startAutoScroll();
+      return;
+    }
+
+    touchEndX = e.changedTouches[0].screenX;
+    touchEndY = e.changedTouches[0].screenY;
+    
+    const deltaX = touchStartX - touchEndX;
+    const deltaY = Math.abs(touchStartY - touchEndY);
+    
+    // Only trigger swipe if horizontal movement is significant and greater than vertical
+    if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > deltaY) {
+      if (deltaX > 0) {
+        // Swipe left - go to next
+        currentIndex = (currentIndex + 1) % cardCount;
+        renderSlides(1);
+      } else {
+        // Swipe right - go to previous
+        currentIndex = (currentIndex - 1 + cardCount) % cardCount;
+        renderSlides(-1);
+      }
+    }
+    
+    // Restart auto-scroll after a delay
+    setTimeout(() => {
+      startAutoScroll();
+    }, 1000);
+  }, { passive: true });
 
   // Initialize
   renderSlides();
@@ -492,4 +550,340 @@ window.updateCarouselWithData = function(newStories) {
 
 // Export for use in other scripts
 window.createScatteredBackgroundPhotos = createScatteredBackgroundPhotos;
+
+// --- Works and Wonders Carousel ---
+function setupWorksWondersCarousel() {
+  const items = [
+    {
+      type: 'youtube',
+      title: 'Sample YouTube Video',
+      url: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      desc: 'A sample video for testing.'
+    },
+    {
+      type: 'youtube',
+      title: 'Kabir on Cars',
+      url: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
+      desc: 'A favorite car video (dummy).'
+    },
+    {
+      type: 'youtube',
+      title: 'Kabir Vlog',
+      url: 'https://www.youtube.com/embed/3JZ_D3ELwOQ',
+      desc: 'A fun vlog moment (dummy).'
+    },
+    {
+      type: 'youtube',
+      title: 'Kabir Tech Talk',
+      url: 'https://www.youtube.com/embed/lTTajzrSkCw',
+      desc: 'Tech talk highlights (dummy).'
+    },
+    {
+      type: 'youtube',
+      title: 'Kabir Music',
+      url: 'https://www.youtube.com/embed/9bZkp7q19f0',
+      desc: 'Music jam session (dummy).'
+    },
+    {
+      type: 'chatgpt',
+      title: 'Remembering Kabir Arora: A Life of Relentless Curiosity and Purpose',
+      desc: 'A comprehensive tribute capturing Kabir\'s journey as a visionary, student, and aspiring data scientist.',
+      content: `Prologue: The Spark of a Seeker
+
+Kabir Arora wasn't just a young man pursuing a degree in Statistics—he was a visionary in the making. His story wasn't defined by titles or credentials, but by his relentless curiosity, hunger for impact, and refusal to settle for surface-level understanding. He approached life with purpose, intentionality, and a deep sense of personal mission: to learn, to build, and to help others through his work.
+
+Kabir left behind a profound digital legacy that reflected his sharp intellect, unrelenting drive, and immense passion for learning and nation-building. He aspired to redefine the role of statistics and intelligence in the modern world—using data to generate insights that others overlooked. He often talked about making numbers "speak"—extracting wisdom from data that could influence decisions at scale.
+
+Chapter 1: The Student Who Asked Better Questions
+
+As a student at Kirori Mal College, pursuing a B.Sc. (Hons) in Statistics, Kabir's questions weren't about passing exams—they were about solving real-world problems. He was constantly asking, "How can I apply this to improve something meaningful?" Whether it was exploring supply chains, e-commerce systems, or machine learning, Kabir's thirst for knowledge was grounded in impact.
+
+He developed a strong interest in applying statistics through business, product development, and technology. He explored how data applies in e-commerce, how machine learning could be implemented on real datasets, and how to build industry-level SQL queries using realistic data. From the beginning, Kabir wasn't content with surface answers. He dived deep into statistical modeling and AI learning roadmaps. He wasn't afraid to ask ChatGPT for entire 15-hour learning plans, theory-to-implementation bridges, or day-by-day roadmaps to mastery.
+
+Chapter 2: Beyond the Classroom – Into the Real World
+
+Kabir understood that learning couldn't stay confined to textbooks. He took that mindset into his work, interning at startups like Unistack, Zomato, and OneLab Ventures. He dove into business analysis, GTM strategy, ONDC enablement, and competitor benchmarking. He conducted on-ground market and competitor analysis, supply chain research, and tech enablement strategies for government platforms. He brought maturity far beyond his age into product decision-making and ecosystem mapping.
+
+He worked on ERP & POS system research for FMCG and grocery, explored product-market fit, and brought sharp thinking to every consulting or startup project he touched. As a Business Analyst and later as a Founder's Office Intern, he helped companies not just with research, but strategic execution. He also worked on consulting fellowships with organizations like Marquee Equity and held roles such as Senior Consultant at 180 Degrees Consulting.
+
+Chapter 3: A Mind for Systems, a Heart for Vision
+
+Kabir was obsessed with how systems worked. He explored embedded commerce (like Bonsai), ONDC protocols, and e-commerce integrations with platforms like Shopify and WooCommerce. He dreamed of building in the B2B SaaS space, especially for the F&B industry—where he saw untapped potential. He showed interest in identity & access management, cybersecurity, and supply chain systems at Amazon and Accenture.
+
+He built decks, analyzed user segments, created B2B strategies, and performed SWOT analyses. His approach was never about volume—it was about clarity, precision, and value.
+
+Chapter 4: Roadmaps to Greatness
+
+Kabir wasn't just chasing careers—he was crafting roadmaps for them. He aimed for 12-hour deep learning days and was committed to building mastery from the ground up. He asked for structured, day-by-day plans to:
+
+• Become a world-class data scientist
+• Master machine learning and AI beyond even Andrew Ng
+• Learn JavaScript for frontend development
+• Dive into blockchain, Web3, HFT, and product analytics
+
+He was studying for GATE 2026 in Statistics with the aim of doing an MTech in Data Science from IISc. He studied linear regression, hypothesis testing, distributions, and time series analysis. He explored Python (NumPy, Pandas, Scikit-learn), SQL, and real-time ETL pipelines. He wanted to build models like ChatGPT—and go beyond them. He believed in layered learning, from first principles to production deployment.
+
+Chapter 5: Human Behind the Hacker
+
+Amid his sharp intellect, Kabir was also deeply human. He faced elbow pain after workouts and asked about fixing it. He downloaded Ableton to try music production. He admired Steve Jobs' Stanford speech and lived by the mantra: "Stay Hungry. Stay Foolish."
+
+He read self-help books, pursued mental growth, and embraced discomfort. He believed in becoming "unrecognizable in brilliance" compared to yesterday. He wasn't afraid to speak truth, ask questions, or admit what he didn't yet know.
+
+Chapter 6: A Legacy in the Making
+
+Kabir once said he wanted to build things that solve real problems at scale. His dream job wasn't a job—it was a mission: to use intellect and creativity to uplift lives, drive profitability through empathy, and serve a vision greater than himself.
+
+He dreamed of founding a trillion-dollar AI company based on deep statistical insight and human understanding. He was driven by impact—not status—and wanted to help build a Developed Bharat by 2047, especially in sports, infrastructure, and grassroots development.
+
+He was deeply inspired by platforms like Cobalt, which brought systems and workflows together. He wanted to be part of something that worked like that—or build one himself.
+
+Epilogue: His Story Continues Through Us
+
+Kabir Arora's life wasn't cut short in terms of impact. His legacy lives in the people he worked with, the ideas he sparked, and the questions he left us to keep asking.
+
+He wasn't just building a career.
+He was building himself—with honesty, clarity, and purpose.`
+    },
+    {
+      type: 'playlist',
+      title: 'Kabir\'s Playlist',
+      url: 'https://music.youtube.com/playlist?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI',
+      desc: 'A YouTube Music playlist (dummy).'
+    },
+    {
+      type: 'audio',
+      title: 'Singer Attitude',
+      url: 'sample-3s.mp3',
+      desc: 'A short audio clip (dummy).'
+    }
+  ];
+  window.carouselItems = items;
+
+  const carousel = document.querySelector('.works-wonders-carousel');
+  if (!carousel) return;
+  const slidesContainer = carousel.querySelector('.ww-carousel-slides');
+  const leftArrow = carousel.querySelector('.ww-arrow-left');
+  const rightArrow = carousel.querySelector('.ww-arrow-right');
+  const visibleCount = 1;
+  let startIndex = 0;
+  let animating = false;
+
+  let expandedChatGptIndex = null;
+
+  function addExpandListeners() {
+    const btn = slidesContainer.querySelector('.expand-chatgpt-btn');
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      if (expandedChatGptIndex === startIndex) {
+        expandedChatGptIndex = null;
+      } else {
+        expandedChatGptIndex = startIndex;
+      }
+      render();
+    });
+  }
+
+  function render() {
+    slidesContainer.innerHTML = '';
+    const row = document.createElement('div');
+    row.className = 'ww-carousel-row';
+    row.style.display = 'flex';
+    row.style.flexWrap = 'nowrap';
+    row.style.justifyContent = 'center';
+    row.style.alignItems = 'stretch';
+    row.style.gap = '0';
+    row.style.width = '100%';
+    row.style.margin = '0';
+    row.style.padding = '0';
+
+    // Only show the current card
+    const item = items[startIndex];
+    const card = document.createElement('div');
+    card.className = 'service-card ww-carousel-card';
+    let mediaContent = '';
+    if (item.type === 'youtube') {
+      let embedUrl = '';
+      if (item.url.includes('youtube.com/embed/')) {
+        embedUrl = item.url;
+      } else {
+        // Try to extract video ID from a normal YouTube link
+        let videoId = '';
+        const match = item.url.match(/[?&]v=([\w-]+)/);
+        if (match) videoId = match[1];
+        if (videoId) {
+          embedUrl = `https://www.youtube.com/embed/${videoId}`;
+        }
+      }
+      if (embedUrl) {
+        mediaContent = `<div class='card-extra'><iframe src='${embedUrl}' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe></div>`;
+      } else {
+        mediaContent = `<div class='card-extra'>Invalid YouTube URL</div>`;
+      }
+    } else if (item.type === 'playlist') {
+      mediaContent = `<div class='card-extra'><a href='${item.url}' target='_blank' class='cta-btn primary'>Open Playlist</a></div>`;
+    } else if (item.type === 'audio') {
+      mediaContent = `<div class='card-extra'><audio controls style='width:90%;margin-top:8px;'><source src='${item.url}' type='audio/mpeg'>Your browser does not support the audio element.</audio></div>`;
+    } else if (item.type === 'chatgpt') {
+      // Show preview and 'Read more' button, open modal on click
+      const preview = item.content.length > 200
+        ? item.content.slice(0, 200).split('\n').slice(0, 3).join('\n') + '...'
+        : item.content;
+      mediaContent = `<div class='card-extra'><pre style='text-align:left; background:#f8f8f8; padding:1em; border-radius:8px;'>${preview}</pre>
+        <button class='expand-chatgpt-btn' data-chatgpt-index='${startIndex}' style='margin-top:0.7em;'>Read more</button>
+      </div>`;
+    }
+    card.innerHTML = `
+      <h3>${item.title}</h3>
+      <p>${item.desc || ''}</p>
+      ${mediaContent}
+    `;
+    row.appendChild(card);
+    slidesContainer.appendChild(row);
+
+    // Dots
+    const dotsContainer = document.querySelector('.ww-carousel-dots');
+    if (dotsContainer) {
+      dotsContainer.innerHTML = '';
+      if (items.length > 1) {
+        for (let i = 0; i < items.length; i++) {
+          const dot = document.createElement('button');
+          dot.className = 'ww-carousel-dot' + (i === startIndex ? ' active' : '');
+          dot.setAttribute('aria-label', `Go to item ${i + 1}`);
+          dot.addEventListener('click', () => {
+            if (i === startIndex) return;
+            startIndex = i;
+            render();
+          });
+          dotsContainer.appendChild(dot);
+        }
+      }
+    }
+    addExpandListeners();
+  }
+
+  leftArrow.addEventListener('click', () => {
+    let newIndex = (startIndex - 1 + items.length) % items.length;
+    startIndex = newIndex;
+    render();
+  });
+  rightArrow.addEventListener('click', () => {
+    let newIndex = (startIndex + 1) % items.length;
+    startIndex = newIndex;
+    render();
+  });
+
+  // Add touch/swipe functionality for Works & Wonders carousel
+  let wwTouchStartX = 0;
+  let wwTouchEndX = 0;
+  let wwTouchStartY = 0;
+  let wwTouchEndY = 0;
+  let wwIsSwiping = false;
+
+  carousel.addEventListener('touchstart', function(e) {
+    wwTouchStartX = e.changedTouches[0].screenX;
+    wwTouchStartY = e.changedTouches[0].screenY;
+    wwIsSwiping = false;
+  }, { passive: true });
+
+  carousel.addEventListener('touchmove', function(e) {
+    const touchCurrentX = e.changedTouches[0].screenX;
+    const touchCurrentY = e.changedTouches[0].screenY;
+    const deltaX = Math.abs(touchCurrentX - wwTouchStartX);
+    const deltaY = Math.abs(touchCurrentY - wwTouchStartY);
+    
+    // If horizontal movement is greater than vertical, it's a swipe
+    if (deltaX > deltaY && deltaX > 10) {
+      wwIsSwiping = true;
+      e.preventDefault(); // Prevent scrolling
+    }
+  }, { passive: false });
+
+  carousel.addEventListener('touchend', function(e) {
+    if (!wwIsSwiping) return;
+
+    wwTouchEndX = e.changedTouches[0].screenX;
+    wwTouchEndY = e.changedTouches[0].screenY;
+    
+    const deltaX = wwTouchStartX - wwTouchEndX;
+    const deltaY = Math.abs(wwTouchStartY - wwTouchEndY);
+    
+    // Only trigger swipe if horizontal movement is significant and greater than vertical
+    if (Math.abs(deltaX) > 50 && Math.abs(deltaX) > deltaY) {
+      if (deltaX > 0) {
+        // Swipe left - go to next
+        let newIndex = (startIndex + 1) % items.length;
+        startIndex = newIndex;
+        render();
+      } else {
+        // Swipe right - go to previous
+        let newIndex = (startIndex - 1 + items.length) % items.length;
+        startIndex = newIndex;
+        render();
+      }
+    }
+  }, { passive: true });
+
+  render();
+}
+
+window.addEventListener('DOMContentLoaded', () => {
+  console.log('Initializing Works and Wonders carousel...');
+  setupWorksWondersCarousel();
+  console.log('Registering ChatGPT modal logic...');
+  setupChatGptModal();
+});
+
+function setupChatGptModal() {
+  console.log('setupChatGptModal called');
+  const modal = document.getElementById('chatgpt-modal');
+  const modalBody = modal.querySelector('.chatgpt-modal-body');
+  const closeBtn = modal.querySelector('.chatgpt-modal-close');
+  // Open modal (event delegation)
+  document.body.addEventListener('click', function(e) {
+    if (e.target.classList.contains('expand-chatgpt-btn')) {
+      console.log('Expand ChatGPT button clicked');
+      const idx = parseInt(e.target.getAttribute('data-chatgpt-index'), 10);
+      console.log('ChatGPT index:', idx);
+      const item = window.carouselItems && !isNaN(idx) ? window.carouselItems[idx] : null;
+      console.log('ChatGPT item:', item);
+      if (!item) return;
+      
+      // Format the content with proper HTML structure for better readability
+      let formattedContent = item.content
+        .replace(/^(Prologue: .+)$/gm, '<h1>$1</h1>')
+        .replace(/^(Chapter \d+: .+)$/gm, '<h2>$1</h2>')
+        .replace(/^(Epilogue: .+)$/gm, '<h1>$1</h1>')
+        .replace(/^• (.+)$/gm, '<li>$1</li>')
+        .replace(/(<li>.*<\/li>)/gs, '<ul>$1</ul>')
+        .replace(/<\/ul>\s*<ul>/g, '')
+        .replace(/\n\n/g, '</p><p>')
+        .replace(/^(?!<[h|u|l])/gm, '<p>')
+        .replace(/(?<!>)$/gm, '</p>')
+        .replace(/<p><\/p>/g, '')
+        .replace(/<p>(<[h|u])/g, '$1')
+        .replace(/(<\/[h|u].*>)<\/p>/g, '$1');
+      
+      modalBody.innerHTML = formattedContent;
+      modal.classList.add('active');
+      closeBtn.focus();
+      console.log('Modal opened with formatted content');
+    }
+  });
+  // Close modal
+  closeBtn.addEventListener('click', function() {
+    modal.classList.remove('active');
+  });
+  // Close on overlay click
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      modal.classList.remove('active');
+    }
+  });
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      modal.classList.remove('active');
+    }
+  });
+}
 

@@ -11,6 +11,97 @@
   --text-muted: #444;
 }
 
+/* Navbar consistency - ensure exact match with main page */
+.navbar {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background: rgba(255,248,240,0.97);
+  box-shadow: 0 2px 8px rgba(191,161,129,0.08);
+  z-index: 1000;
+  transition: background 0.3s;
+}
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  max-width: min(1200px, 96vw) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 5vw !important;
+  padding-right: 5vw !important;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.logo-image {
+  height: 55px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  filter: brightness(1.1) contrast(0.9) saturate(0.6) sepia(0.1);
+  opacity: 0.9;
+  transition: all 0.3s ease;
+}
+.logo-image:hover {
+  filter: brightness(1.2) contrast(1) saturate(0.7) sepia(0.05);
+  opacity: 1;
+}
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-main);
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover {
+  color: var(--accent);
+}
+.nav-links a.active {
+  color: var(--accent);
+  font-weight: 600;
+  position: relative;
+}
+.nav-links a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 2px;
+  background: var(--accent);
+  border-radius: 1px;
+}
+
+/* Mobile navbar styles - exact match */
+@media (max-width: 699px) {
+  .nav-links {
+    gap: 1rem;
+  }
+  .nav-container {
+    flex-direction: column;
+    height: auto;
+    padding: 0.7rem 0;
+  }
+  .logo {
+    margin-bottom: 0.5rem;
+  }
+  .logo-image {
+    height: 45px;
+    max-width: 130px;
+  }
+}
+
 /* Main background */
 .stories-bg {
   background: linear-gradient(135deg, #fff8f0 60%, #fbeedc 100%) fixed;
@@ -42,6 +133,17 @@ main {
   padding-right: 5vw;
   overflow-wrap: break-word;
   box-sizing: border-box;
+}
+
+/* Ensure navbar container is not affected by general container styles */
+.navbar .nav-container {
+  max-width: min(1200px, 96vw) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 5vw !important;
+  padding-right: 5vw !important;
+  overflow-wrap: break-word !important;
+  box-sizing: border-box !important;
 }
 
 /* Page heading */

@@ -16,8 +16,8 @@
       <nav>
         <ul class="nav-links">
           <li><a href="index.html#home">Home</a></li>
-          <li><a href="index.html#about">About</a></li>
           <li><a href="stories.html" class="active">Stories</a></li>
+          <li><a href="index.html#works-wonders">Works and Wonders</a></li>
           <li><a href="index.html#contact">Contact</a></li>
         </ul>
       </nav>
@@ -75,12 +75,15 @@
         // Clear existing stories (including loading message)
         storiesList.innerHTML = '';
 
+        // Reverse the stories array so latest stories appear first
+        const storiesToShow = [...newStories].reverse();
+
         // Create new stories from the data
-        newStories.forEach((story, idx) => {
-            const id = `story${idx+1}`;
+        storiesToShow.forEach((story) => {
+            const blockId = `story-${story.id}`;
             const block = document.createElement('article');
             block.className = 'story-block fade-in';
-            block.id = id;
+            block.id = blockId;
 
             // Create media content
             let mediaContent = '';
@@ -109,7 +112,7 @@
                 <div class="story-extra">
                     ${mediaContent}
                 </div>
-                ${showReadMore ? `<a href="#${id}" class="read-more-link">Read more &rarr;</a>` : ''}
+                ${showReadMore ? `<a href="#${blockId}" class="read-more-link">Read more &rarr;</a>` : ''}
                 <div class="story-full" style="display:none; color:var(--text-main); margin-top:1.1rem;">${story.content.replace(/\n/g, '<br>')}</div>
             `;
 
@@ -118,11 +121,9 @@
             if (readMoreLink) {
                 readMoreLink.addEventListener('click', function(e) {
                     e.preventDefault();
-                    
                     // Get the specific elements for this story
                     const fullText = block.querySelector('.story-full');
                     const shortText = block.querySelector('.story-short');
-                    
                     // Toggle this specific story only
                     if (fullText.style.display === 'none' || fullText.style.display === '') {
                         // Show full text, hide short text and read more link
@@ -135,7 +136,6 @@
                         shortText.style.display = 'block';
                         readMoreLink.style.display = 'inline-block';
                     }
-                    
                     // Scroll to this story
                     block.scrollIntoView({behavior:'smooth', block:'center'});
                 });
@@ -216,7 +216,7 @@
     // Function to show full text for hash
     function showStoryFromHash() {
       const hash = window.location.hash;
-      if (hash && hash.startsWith('#story')) {
+      if (hash && hash.startsWith('#story-')) {
         const block = document.querySelector(hash);
         if (block) {
           // Only reset all stories if we're navigating to a specific story from hash

@@ -50,22 +50,23 @@ function getStoriesFromForms() {
       // Map form fields to story properties based on your actual spreadsheet headers
       story.id = i;
       story.timestamp = row[0]; // Timestamp column
-      
-      // Debug: Log the name value to see what's actually in the column
       const nameValue = row[1];
-      console.log(`Row ${i}: Name value = "${nameValue}"`);
-      
-      story.name = nameValue || 'Anonymous'; // "Your name" column
       story.content = row[2] || ''; // "Your thoughts/ stories/ incidents with Kabir" column
       story.mediaUrl = row[3] || ''; // "Please upload anything of Kabir" column (URL)
       // Check visibility - handle empty cells and different possible values
-      const visibilityValue = row[4] || '';
-      story.visible = visibilityValue.toLowerCase().includes('yes') || visibilityValue === ''; // Default to visible if empty
-      
+      const visibilityValue = (row[4] || '').toLowerCase();
+      if (visibilityValue === 'yes') {
+        story.visible = true;
+        story.name = nameValue || 'Anonymous';
+      } else if (visibilityValue === 'yes but anonymously') {
+        story.visible = true;
+        story.name = 'Anonymous';
+      } else {
+        story.visible = false;
+      }
       // Generate a title from the content if none provided
       story.title = generateTitle(story.content);
-      
-      // Only include stories that are marked as visible (or have empty visibility field)
+      // Only include stories that are marked as visible
       if (story.visible) {
         stories.push(story);
       }

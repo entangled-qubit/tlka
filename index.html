@@ -17,8 +17,8 @@
       <nav>
         <ul class="nav-links">
           <li><a href="#home">Home</a></li>
-          <li><a href="#about">About</a></li>
           <li><a href="#stories">Stories</a></li>
+          <li><a href="#works-wonders">Works and Wonders</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
@@ -85,11 +85,30 @@
     </div>
   </section>
 
+  <!-- Works and Wonders Section -->
+  <section id="works-wonders" class="works-wonders-section">
+    <div class="container">
+      <h2>Works and Wonders</h2>
+      <div class="works-wonders-carousel">
+        <button class="ww-arrow-left" aria-label="Previous">&#8592;</button>
+        <div class="ww-carousel-slides"></div>
+        <button class="ww-arrow-right" aria-label="Next">&#8594;</button>
+      </div>
+      <div class="ww-carousel-dots"></div>
+    </div>
+  </section>
+
   <!-- Contact Section -->
   <section id="contact" class="contact-section">
     <div class="container">
       <h2>Contact Us</h2>
-      <form class="contact-form">
+      <form class="contact-form" action="https://formsubmit.co/your-email@example.com" method="POST">
+        <!-- FormSubmit.co Configuration -->
+        <input type="hidden" name="_subject" value="New Contact Form Submission - TLKA Memorial Website">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+        
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" required>
@@ -110,6 +129,14 @@
   <!-- Link to external JS -->
   <script src="script.js"></script>
   <script src="google-drive-integration.js"></script>
+
+  <!-- ChatGPT Modal Popup -->
+  <div id="chatgpt-modal" style="display:none;">
+    <div class="chatgpt-modal-content">
+      <button class="chatgpt-modal-close" aria-label="Close">&times;</button>
+      <div class="chatgpt-modal-body"></div>
+    </div>
+  </div>
 </body>
 </html>
 

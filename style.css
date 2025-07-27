@@ -327,9 +327,13 @@ body {
 }
 .services-section h2 {
   text-align: center;
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: var(--accent);
   margin-bottom: 2.5rem;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 12px rgba(238,217,196,0.18);
 }
 .services-carousel {
   display: flex;
@@ -342,6 +346,11 @@ body {
   overflow: visible;
   min-height: 520px;
   width: 100%;
+  touch-action: pan-y pinch-zoom;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 .service-card {
   position: static;
@@ -370,6 +379,11 @@ body {
   padding-bottom: 2.8rem;
   transform-origin: center center;
   overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.service-card:active {
+  transform: scale(0.98);
 }
 .service-card.carousel-center {
   transform: scale(1.18);
@@ -1365,5 +1379,1190 @@ img, video {
 .card-extra img {
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+/* Works and Wonders Section */
+.works-wonders-section {
+  padding: 3rem 0 3rem 0;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+.works-wonders-section h2 {
+  text-align: center;
+  font-size: 2.5rem;
+  color: #000;
+  margin-bottom: 2.5rem;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 12px rgba(238,217,196,0.18);
+}
+.works-wonders-content {
+  text-align: center;
+  color: #000;
+  font-size: 1.2rem;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Works and Wonders Carousel Styles */
+.works-wonders-carousel {
+  max-width: 900px;
+  width: 95vw;
+  margin: 0 auto 2.5rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 320px;
+  touch-action: pan-y pinch-zoom;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.ww-carousel-slides {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1.2rem;
+  min-height: 340px;
+  width: 100%;
+  box-sizing: border-box;
+}
+.ww-carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
+}
+.ww-carousel-dots .carousel-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #eed9c4;
+  border: none;
+  opacity: 0.5;
+  transition: opacity 0.2s, background 0.2s;
+  cursor: pointer;
+}
+.ww-carousel-dots .carousel-dot.active {
+  opacity: 1;
+  background: #bfa181;
+}
+.works-wonders-carousel .service-card.carousel-center {
+  width: 340px !important;
+  min-width: 240px !important;
+  max-width: 360px !important;
+  height: auto !important;
+  min-height: 320px !important;
+  margin: 0 auto;
+  box-shadow: 0 4px 24px rgba(191,161,129,0.10);
+  background: #fffdf8;
+  border-radius: 18px;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.3s;
+}
+.works-wonders-carousel .service-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.7rem;
+  color: #222;
+  text-align: center;
+}
+.works-wonders-carousel .service-card p {
+  font-size: 1.08rem;
+  color: #444;
+  margin-bottom: 1.1rem;
+  text-align: center;
+}
+.works-wonders-carousel .card-extra {
+  margin-top: 0.7rem;
+  width: 100%;
+  text-align: center;
+}
+.works-wonders-carousel .card-extra iframe,
+.works-wonders-carousel .card-extra audio {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.works-wonders-carousel .card-extra pre {
+  background: #f8f8f8;
+  color: #222;
+  font-size: 1.02rem;
+  padding: 1em;
+  border-radius: 8px;
+  text-align: left;
+  white-space: pre-wrap;
+  margin: 0 auto;
+  max-width: 95%;
+}
+@media (max-width: 600px) {
+  .works-wonders-carousel .service-card.carousel-center {
+    width: 98vw !important;
+    min-width: 0 !important;
+    max-width: 99vw !important;
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+}
+
+/* Works and Wonders Carousel 3-card layout */
+.works-wonders-carousel .ww-carousel-slides {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2vw;
+  min-height: 340px;
+}
+.works-wonders-carousel .service-card.ww-carousel-center {
+  width: 400px !important;
+  min-width: 320px !important;
+  max-width: 480px !important;
+  height: auto !important;
+  min-height: 320px !important;
+  margin: 0 auto;
+  box-shadow: 0 4px 24px rgba(191,161,129,0.10);
+  background: #fffdf8;
+  border-radius: 18px;
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+  opacity: 1;
+  transform: scale(1.08);
+  transition: box-shadow 0.3s, transform 0.3s, opacity 0.3s;
+}
+.works-wonders-carousel .service-card.ww-carousel-left,
+.works-wonders-carousel .service-card.ww-carousel-right {
+  width: 180px !important;
+  min-width: 120px !important;
+  max-width: 200px !important;
+  height: auto !important;
+  min-height: 220px !important;
+  margin: 0;
+  box-shadow: 0 2px 12px rgba(191,161,129,0.07);
+  background: #fbeedc;
+  border-radius: 14px;
+  padding: 1.1rem 0.7rem 1.1rem 0.7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  opacity: 0.65;
+  filter: blur(0.5px) grayscale(0.08);
+  transform: scale(0.92);
+  transition: box-shadow 0.3s, transform 0.3s, opacity 0.3s;
+}
+.works-wonders-carousel .service-card.ww-carousel-left {
+  margin-right: 0.5vw;
+}
+.works-wonders-carousel .service-card.ww-carousel-right {
+  margin-left: 0.5vw;
+}
+.works-wonders-carousel .service-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #222;
+  text-align: center;
+}
+.works-wonders-carousel .service-card p {
+  font-size: 1.01rem;
+  color: #444;
+  margin-bottom: 0.7rem;
+  text-align: center;
+}
+.works-wonders-carousel .card-extra {
+  margin-top: 0.7rem;
+  width: 100%;
+  text-align: center;
+}
+.works-wonders-carousel .card-extra iframe,
+.works-wonders-carousel .card-extra audio {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.works-wonders-carousel .card-extra pre {
+  background: #f8f8f8;
+  color: #222;
+  font-size: 1.02rem;
+  padding: 1em;
+  border-radius: 8px;
+  text-align: left;
+  white-space: pre-wrap;
+  margin: 0 auto;
+  max-width: 95%;
+}
+@media (max-width: 900px) {
+  .works-wonders-carousel {
+    max-width: 99vw;
+    width: 99vw;
+  }
+  .works-wonders-carousel .ww-carousel-slides {
+    gap: 1vw;
+  }
+  .works-wonders-carousel .service-card.ww-carousel-center {
+    width: 98vw !important;
+    min-width: 0 !important;
+    max-width: 99vw !important;
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+  .works-wonders-carousel .service-card.ww-carousel-left,
+  .works-wonders-carousel .service-card.ww-carousel-right {
+    display: none;
+  }
+}
+
+/* Fix responsive card sizing and smooth carousel movement */
+.works-wonders-carousel {
+  max-width: 900px;
+  width: 95vw;
+  margin: 0 auto 2.5rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 320px;
+}
+.works-wonders-carousel .ww-carousel-slides {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 1rem;
+  min-height: 240px;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+.works-wonders-carousel .service-card.ww-carousel-center,
+.works-wonders-carousel .service-card.ww-carousel-left,
+.works-wonders-carousel .service-card.ww-carousel-right {
+  width: min(300px, 28vw) !important;
+  min-width: 160px !important;
+  max-width: 300px !important;
+  height: min(340px, 38vw) !important;
+  min-height: 180px !important;
+  max-height: 340px !important;
+  margin: 0;
+  box-shadow: 0 4px 24px rgba(191,161,129,0.10);
+  background: #fffdf8;
+  border-radius: 18px;
+  padding: 1.2rem 0.8rem 1rem 0.8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 1;
+  opacity: 1;
+  filter: none;
+  transform: none;
+  transition: box-shadow 0.3s, width 0.3s, height 0.3s, padding 0.3s, transform 0.5s cubic-bezier(.4,0,.2,1), opacity 0.5s cubic-bezier(.4,0,.2,1);
+}
+.works-wonders-carousel .service-card h3 {
+  font-size: min(1.2rem, 4vw);
+}
+.works-wonders-carousel .service-card p {
+  font-size: min(1.01rem, 3vw);
+}
+@media (max-width: 900px) {
+  .works-wonders-carousel {
+    max-width: 99vw;
+    width: 99vw;
+  }
+  .works-wonders-carousel .ww-carousel-slides {
+    gap: 1vw;
+  }
+  .works-wonders-carousel .service-card.ww-carousel-center,
+  .works-wonders-carousel .service-card.ww-carousel-left,
+  .works-wonders-carousel .service-card.ww-carousel-right {
+    width: 98vw !important;
+    min-width: 0 !important;
+    max-width: 99vw !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+  .works-wonders-carousel .service-card.ww-carousel-left,
+  .works-wonders-carousel .service-card.ww-carousel-right {
+    display: none;
+  }
+}
+
+/* Sliding carousel row for Works and Wonders */
+.works-wonders-carousel .ww-carousel-slides {
+  overflow: hidden;
+  width: 100%;
+  max-width: 100%;
+  min-height: 240px;
+  position: relative;
+}
+.works-wonders-carousel .ww-carousel-row {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(.4,0,.2,1);
+  will-change: transform;
+  gap: 0;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.works-wonders-carousel .ww-carousel-card {
+  flex: 0 0 min(33.33%, 300px);
+  max-width: 300px;
+  min-width: 0;
+  box-sizing: border-box;
+  opacity: 1;
+  pointer-events: auto;
+  transition: opacity 0.4s, box-shadow 0.3s;
+  z-index: 1;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+.works-wonders-carousel .ww-carousel-card:not(.ww-carousel-center):not(.ww-carousel-left):not(.ww-carousel-right) {
+  opacity: 0;
+  pointer-events: none;
+  display: none;
+}
+.works-wonders-carousel .ww-carousel-card.ww-carousel-center,
+.works-wonders-carousel .ww-carousel-card.ww-carousel-left,
+.works-wonders-carousel .ww-carousel-card.ww-carousel-right {
+  opacity: 1;
+  pointer-events: auto;
+  display: block;
+}
+@media (max-width: 900px) {
+  .works-wonders-carousel .ww-carousel-row {
+    gap: 0;
+  }
+  .works-wonders-carousel .ww-carousel-card {
+    flex: 0 0 100%;
+    max-width: 100%;
+    min-width: 0;
+    display: none;
+  }
+  .works-wonders-carousel .ww-carousel-card.ww-carousel-center {
+    display: block;
+  }
+}
+
+/* Remove margins and padding from carousel cards and row */
+.works-wonders-carousel .ww-carousel-row {
+  gap: 0;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+.works-wonders-carousel .ww-carousel-card {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Works and Wonders: display all cards, no carousel, no blur */
+.works-wonders-carousel .ww-carousel-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2vw;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.works-wonders-carousel .ww-carousel-card {
+  flex: 1 1 280px;
+  max-width: 320px;
+  min-width: 220px;
+  box-sizing: border-box;
+  opacity: 1 !important;
+  filter: none !important;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .works-wonders-carousel .ww-carousel-row {
+    gap: 3vw;
+  }
+  .works-wonders-carousel .ww-carousel-card {
+    flex: 1 1 90vw;
+    max-width: 98vw;
+    min-width: 180px;
+  }
+}
+
+/* Works and Wonders: icon/link row, no cards */
+.works-wonders-carousel .ww-links-row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5vw;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+.works-wonders-carousel .ww-links-row > * {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 120px;
+  max-width: 180px;
+  margin: 0.5em 0;
+  flex: 0 0 auto;
+}
+.works-wonders-carousel .ww-links-row img,
+.works-wonders-carousel .ww-links-row svg {
+  height: 48px;
+  width: auto;
+  margin-bottom: 0.2em;
+}
+.works-wonders-carousel .ww-links-row span {
+  font-size: 0.97rem;
+  margin-top: 0.3em;
+  word-break: break-word;
+}
+@media (max-width: 700px) {
+  .works-wonders-carousel .ww-links-row {
+    gap: 4vw;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .works-wonders-carousel .ww-links-row > * {
+    min-width: 100px;
+    max-width: 98vw;
+    flex: 0 0 auto;
+  }
+}
+
+/* Force side-by-side, single-row, scrollable icons/links */
+.works-wonders-carousel .ww-links-row {
+  display: inline-flex;
+  flex-wrap: nowrap !important;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2.5vw;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  scrollbar-width: thin;
+}
+.works-wonders-carousel .ww-links-row > * {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  min-width: 120px;
+  margin: 0.5em 0;
+  flex: 0 0 auto;
+  white-space: normal;
+}
+@media (max-width: 700px) {
+  .works-wonders-carousel .ww-links-row {
+    gap: 4vw;
+    flex-wrap: nowrap !important;
+    overflow-x: auto;
+  }
+  .works-wonders-carousel .ww-links-row > * {
+    min-width: 100px;
+    flex: 0 0 auto;
+  }
+}
+
+/* Show exactly 3 icons/links at a time, side by side, scrollable */
+.works-wonders-carousel .ww-links-row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 2.5vw;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  max-width: 900px;
+  box-sizing: border-box;
+}
+.works-wonders-carousel .ww-links-row > * {
+  flex: 0 0 calc((100% - 5vw) / 3);
+  max-width: calc((100% - 5vw) / 3);
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 0.5em 0;
+  white-space: normal;
+}
+@media (max-width: 900px) {
+  .works-wonders-carousel .ww-links-row {
+    max-width: 100vw;
+    gap: 4vw;
+  }
+  .works-wonders-carousel .ww-links-row > * {
+    flex: 0 0 100%;
+    max-width: 98vw;
+    min-width: 100px;
+  }
+}
+
+/* Works and Wonders: card/box layout, responsive grid */
+.works-wonders-carousel .ww-carousel-row {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2vw;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+.works-wonders-carousel .ww-carousel-card {
+  flex: 1 1 280px;
+  max-width: 320px;
+  min-width: 220px;
+  box-sizing: border-box;
+  background: #fffdf8;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(191,161,129,0.10);
+  padding: 1.5rem 1rem 1.2rem 1rem;
+  margin: 0;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.3s;
+  height: auto;
+  min-height: 180px;
+  max-height: none;
+}
+.works-wonders-carousel .ww-carousel-card h3 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #222;
+  text-align: center;
+}
+.works-wonders-carousel .ww-carousel-card p {
+  font-size: 1.01rem;
+  color: #444;
+  margin-bottom: 0.7rem;
+  text-align: center;
+}
+.works-wonders-carousel .card-extra {
+  margin-top: 0.7rem;
+  width: 100%;
+  text-align: center;
+}
+.works-wonders-carousel .card-extra pre {
+  background: #f8f8f8;
+  color: #222;
+  font-size: 1.02rem;
+  padding: 1em;
+  border-radius: 8px;
+  text-align: left;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin: 0 auto;
+  max-width: 100%;
+  overflow: auto;
+  box-sizing: border-box;
+}
+@media (max-width: 900px) {
+  .works-wonders-carousel .ww-carousel-row {
+    gap: 3vw;
+  }
+  .works-wonders-carousel .ww-carousel-card {
+    flex: 1 1 90vw;
+    max-width: 96vw;
+    min-width: 180px;
+    box-sizing: border-box;
+    height: auto;
+    min-height: 220px;
+    max-height: none;
+    padding: 1.2rem 2vw 1.2rem 0.5rem;
+    margin: 0 auto;
+  }
+  .works-wonders-carousel .ww-carousel-row,
+  .works-wonders-carousel .ww-carousel-slides {
+    max-width: 100vw;
+    margin: 0 auto;
+    overflow-x: auto;
+    box-sizing: border-box;
+  }
+}
+
+/* Ensure Works and Wonders carousel is visible */
+.works-wonders-carousel, .ww-carousel-slides, .ww-carousel-row {
+  min-height: 100px;
+  display: block !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+.ww-carousel-card {
+  display: flex !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Style arrow buttons for Works and Wonders carousel */
+.works-wonders-carousel {
+  position: relative;
+}
+.ww-arrow-left, .ww-arrow-right {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  background: #fffdf8;
+  border: 1px solid #eed9c4;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  font-size: 2rem;
+  color: #bfa181;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(191,161,129,0.10);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.ww-arrow-left {
+  left: -70px;
+}
+.ww-arrow-right {
+  right: -70px;
+}
+.ww-arrow-left:hover, .ww-arrow-right:hover, .ww-arrow-left:focus, .ww-arrow-right:focus {
+  background: #eed9c4;
+  color: #fff;
+  outline: none;
+  box-shadow: 0 4px 16px rgba(191,161,129,0.18);
+}
+@media (max-width: 900px) {
+  .ww-arrow-left, .ww-arrow-right {
+    width: 36px;
+    height: 36px;
+    font-size: 1.5rem;
+    left: 0;
+    right: 0;
+  }
+  .ww-arrow-left {
+    left: 0;
+  }
+  .ww-arrow-right {
+    right: 0;
+  }
+}
+
+/* Move arrows further out and unify card dimensions */
+.ww-arrow-left {
+  left: -70px;
+}
+.ww-arrow-right {
+  right: -70px;
+}
+.works-wonders-carousel .ww-carousel-card {
+  flex: 0 0 320px;
+  max-width: 320px;
+  min-width: 320px;
+  height: 380px;
+  max-height: 380px;
+  min-height: 380px;
+  box-sizing: border-box;
+  background: #fffdf8;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(191,161,129,0.10);
+  padding: 1.5rem 1rem 1.2rem 1rem;
+  margin: 0;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.3s;
+  overflow: hidden;
+}
+.works-wonders-carousel .ww-carousel-row {
+  display: flex !important;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2vw;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+/* Carousel dots */
+.ww-carousel-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+.ww-carousel-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #eed9c4;
+  border: none;
+  opacity: 0.5;
+  transition: opacity 0.2s, background 0.2s;
+  cursor: pointer;
+}
+.ww-carousel-dot.active {
+  opacity: 1;
+  background: #bfa181;
+}
+@media (max-width: 900px) {
+  .ww-arrow-left, .ww-arrow-right {
+    left: 0;
+    right: 0;
+  }
+  .works-wonders-carousel .ww-carousel-card {
+    flex: 0 0 98vw;
+    max-width: 98vw;
+    min-width: 98vw;
+    height: auto;
+    min-height: 220px;
+    max-height: none;
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+  .works-wonders-carousel .ww-carousel-row {
+    gap: 3vw;
+  }
+}
+
+/* Smooth sliding animation for Works and Wonders carousel */
+.works-wonders-carousel .ww-carousel-slides {
+  overflow: hidden;
+  position: relative;
+}
+.works-wonders-carousel .ww-carousel-row {
+  display: flex !important;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2vw;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  transition: transform 0.6s cubic-bezier(.4,0,.2,1);
+  will-change: transform;
+}
+.works-wonders-carousel .ww-carousel-row.sliding {
+  /* This class will be toggled to trigger the animation */
+}
+
+/* Prevent first and last carousel cards from being cut off */
+.works-wonders-carousel .ww-carousel-slides {
+  overflow: hidden;
+  position: relative;
+  padding-left: 160px;
+  padding-right: 160px;
+  box-sizing: border-box;
+}
+@media (max-width: 900px) {
+  .works-wonders-carousel .ww-carousel-slides {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+}
+
+/* Fix: Center carousel row and prevent card cutoff without large padding */
+.works-wonders-carousel .ww-carousel-slides {
+  overflow: hidden;
+  position: relative;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-left: 0;
+  padding-right: 0;
+  box-sizing: border-box;
+}
+.works-wonders-carousel .ww-carousel-row {
+  display: flex !important;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2vw;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Show only one large carousel card at a time, centered */
+.works-wonders-carousel .ww-carousel-row {
+  display: flex !important;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.works-wonders-carousel .ww-carousel-card {
+  flex: 0 0 480px;
+  max-width: 480px;
+  min-width: 320px;
+  height: 420px;
+  max-height: 420px;
+  min-height: 320px;
+  box-sizing: border-box;
+  background: #fffdf8;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(191,161,129,0.10);
+  padding: 1.5rem 1rem 1.2rem 1rem;
+  margin: 0 auto;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.3s;
+  overflow: hidden;
+}
+.works-wonders-carousel .card-extra iframe {
+  width: 100%;
+  height: 260px;
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 0 auto;
+  display: block;
+}
+@media (max-width: 900px) {
+  .works-wonders-carousel .ww-carousel-card {
+    flex: 0 0 98vw;
+    max-width: 98vw;
+    min-width: 98vw;
+    height: auto;
+    min-height: 220px;
+    max-height: none;
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+  .works-wonders-carousel .card-extra iframe {
+    width: 100vw;
+    height: 200px;
+    min-width: 0;
+    max-width: 100vw;
+  }
+}
+
+/* Make single carousel card larger for desktop */
+.works-wonders-carousel .ww-carousel-card {
+  flex: 0 0 600px;
+  max-width: 600px;
+  min-width: 320px;
+  height: 500px;
+  max-height: 500px;
+  min-height: 320px;
+  box-sizing: border-box;
+  background: #fffdf8;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(191,161,129,0.10);
+  padding: 2rem 1.5rem 1.5rem 1.5rem;
+  margin: 0 auto;
+  display: flex !important;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.3s;
+  overflow: hidden;
+}
+.works-wonders-carousel .card-extra iframe {
+  width: 100%;
+  height: 340px;
+  max-width: 100%;
+  border-radius: 10px;
+  margin: 0 auto;
+  display: block;
+}
+@media (max-width: 900px) {
+  .works-wonders-carousel .ww-carousel-card {
+    flex: 0 0 98vw;
+    max-width: 98vw;
+    min-width: 98vw;
+    height: auto;
+    min-height: 220px;
+    max-height: none;
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+  .works-wonders-carousel .card-extra iframe {
+    width: 100vw;
+    height: 200px;
+    min-width: 0;
+    max-width: 100vw;
+  }
+}
+
+/* Ensure buttons/links in carousel are always clickable */
+.works-wonders-carousel .ww-carousel-card,
+.works-wonders-carousel .card-extra {
+  z-index: 1;
+  pointer-events: auto !important;
+}
+.works-wonders-carousel .cta-btn {
+  pointer-events: auto !important;
+  z-index: 2;
+}
+
+@media (max-width: 900px) {
+  .works-wonders-carousel .card-extra iframe {
+    width: 100% !important;
+    height: 56vw !important;
+    max-height: 240px;
+    min-width: 0;
+    border-radius: 10px;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+@media (max-width: 900px) {
+  .ww-arrow-left, .ww-arrow-right {
+    display: none !important;
+  }
+}
+
+@media (max-width: 900px) {
+  .works-wonders-carousel .ww-carousel-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+    height: auto;
+    min-height: 220px;
+    max-height: none;
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+    margin: 0 auto;
+  }
+  .works-wonders-carousel .ww-carousel-row,
+  .works-wonders-carousel .ww-carousel-slides {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+    overflow-x: visible;
+    box-sizing: border-box;
+  }
+}
+
+@media (max-width: 900px) {
+  html, body, .works-wonders-carousel, .ww-carousel-slides, .ww-carousel-row {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-sizing: border-box !important;
+  }
+  .works-wonders-carousel .ww-carousel-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    box-sizing: border-box !important;
+    height: auto !important;
+    min-height: 220px !important;
+    max-height: none !important;
+    padding: 1.2rem 0 1.2rem 0 !important;
+    margin: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+  }
+}
+
+.expand-chatgpt-btn {
+  background: #eed9c4;
+  color: #222;
+  border: none;
+  border-radius: 8px;
+  padding: 0.5em 1.2em;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  margin-top: 0.5em;
+  box-shadow: 0 2px 8px rgba(191,161,129,0.08);
+}
+.expand-chatgpt-btn:hover, .expand-chatgpt-btn:focus {
+  background: #bfa181;
+  color: #fff;
+  outline: none;
+}
+
+#chatgpt-modal {
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(34, 34, 34, 0.75);
+  justify-content: center;
+  align-items: center;
+  transition: opacity 0.2s;
+  display: none;
+}
+#chatgpt-modal.active {
+  display: flex !important;
+}
+.chatgpt-modal-content {
+  background: #fffdf8;
+  border-radius: 18px;
+  max-width: 800px;
+  width: 95vw;
+  max-height: 90vh;
+  padding: 2.2rem 1.5rem 1.5rem 1.5rem;
+  box-shadow: 0 8px 32px rgba(34,34,34,0.18);
+  position: relative;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  scrollbar-width: thin;
+  scrollbar-color: #eed9c4 #f8f8f8;
+}
+
+.chatgpt-modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.chatgpt-modal-content::-webkit-scrollbar-track {
+  background: #f8f8f8;
+  border-radius: 4px;
+}
+
+.chatgpt-modal-content::-webkit-scrollbar-thumb {
+  background: #eed9c4;
+  border-radius: 4px;
+}
+
+.chatgpt-modal-content::-webkit-scrollbar-thumb:hover {
+  background: #bfa181;
+}
+.chatgpt-modal-close {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.1rem;
+  background: none;
+  border: none;
+  font-size: 2rem;
+  color: #bfa181;
+  cursor: pointer;
+  z-index: 2;
+  transition: color 0.2s;
+}
+.chatgpt-modal-close:hover, .chatgpt-modal-close:focus {
+  color: #e53935;
+  outline: none;
+}
+.chatgpt-modal-body {
+  width: 100%;
+  max-width: 100%;
+  color: #222;
+  font-size: 1.08rem;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  margin-top: 0.5rem;
+  text-align: left;
+  max-height: 70vh;
+  overflow-y: auto;
+  padding-right: 0.5rem;
+}
+
+.chatgpt-modal-body h1, .chatgpt-modal-body h2, .chatgpt-modal-body h3 {
+  color: #bfa181;
+  margin-top: 1.5rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+}
+
+.chatgpt-modal-body h1 {
+  font-size: 1.4rem;
+  border-bottom: 2px solid #eed9c4;
+  padding-bottom: 0.3rem;
+}
+
+.chatgpt-modal-body h2 {
+  font-size: 1.25rem;
+}
+
+.chatgpt-modal-body h3 {
+  font-size: 1.15rem;
+}
+
+.chatgpt-modal-body p {
+  margin-bottom: 1rem;
+}
+
+.chatgpt-modal-body ul {
+  margin: 0.5rem 0 1rem 1.5rem;
+  list-style-type: disc;
+}
+
+.chatgpt-modal-body li {
+  margin-bottom: 0.3rem;
+}
+@media (max-width: 600px) {
+  .chatgpt-modal-content {
+    max-width: 99vw;
+    width: 99vw;
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+  .chatgpt-modal-close {
+    top: 0.5rem;
+    right: 0.5rem;
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 900px) {
+  html, body {
+    overflow-x: hidden !important;
+  }
+  .chatgpt-modal-content {
+    width: 98vw !important;
+    max-width: 98vw !important;
+    max-height: 95vh;
+    padding: 1.5rem 1rem 2rem 1rem !important;
+    overflow-y: auto;
+    box-sizing: border-box !important;
+    border-radius: 12px !important;
+  }
+  .chatgpt-modal-body {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: hidden !important;
+    padding-bottom: 1.5rem !important;
+    padding-right: 0.5rem !important;
+    margin: 0 !important;
+    font-size: 1rem !important;
+    line-height: 1.7 !important;
+  }
+  .chatgpt-modal-body h1 {
+    font-size: 1.2rem !important;
+  }
+  .chatgpt-modal-body h2 {
+    font-size: 1.1rem !important;
+  }
+  .chatgpt-modal-close {
+    top: 0.8rem !important;
+    right: 0.8rem !important;
+    font-size: 1.8rem !important;
+  }
 }
 
