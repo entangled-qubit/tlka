@@ -556,25 +556,25 @@ function setupWorksWondersCarousel() {
   const items = [
     {
       type: 'youtube',
-      title: 'Sample YouTube Video',
-      url: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      desc: 'A sample video for testing.'
+      title: 'The Dark Miracle, Ep 1',
+      url: 'https://www.youtube.com/embed/fpSmQvxtDEE',
+    
     },
     {
       type: 'youtube',
-      title: 'Kabir on Cars',
-      url: 'https://www.youtube.com/embed/dQw4w9WgXcQ',
-      desc: 'A favorite car video (dummy).'
+      title: 'The Dark Miracle, Ep 2',
+      url: 'https://www.youtube.com/embed/YSua4vW94Vk',
+     
     },
     {
       type: 'youtube',
-      title: 'Kabir Vlog',
+      title: 'A small fun vlog created by Kabir in his first year of college',
       url: 'https://www.youtube.com/embed/3JZ_D3ELwOQ',
       desc: 'A fun vlog moment (dummy).'
     },
     {
       type: 'youtube',
-      title: 'Kabir Tech Talk',
+      title: '',
       url: 'https://www.youtube.com/embed/lTTajzrSkCw',
       desc: 'Tech talk highlights (dummy).'
     },
@@ -587,7 +587,7 @@ function setupWorksWondersCarousel() {
     {
       type: 'chatgpt',
       title: 'Remembering Kabir Arora: A Life of Relentless Curiosity and Purpose',
-      desc: 'A comprehensive tribute capturing Kabir\'s journey as a visionary, student, and aspiring data scientist.',
+      desc: 'A comprehensive tribute capturing Kabir\'s journey as a visionary, student, and aspiring data scientist, by CHATGPT.',
       content: `Prologue: The Spark of a Seeker
 
 Kabir Arora wasn't just a young man pursuing a degree in Statistics—he was a visionary in the making. His story wasn't defined by titles or credentials, but by his relentless curiosity, hunger for impact, and refusal to settle for surface-level understanding. He approached life with purpose, intentionality, and a deep sense of personal mission: to learn, to build, and to help others through his work.
@@ -645,16 +645,46 @@ He wasn't just building a career.
 He was building himself—with honesty, clarity, and purpose.`
     },
     {
+      type: 'chatgpt',
+      title: 'That Email',
+      desc: 'How Kabir\'s fearless attitude led to an internship and PPO at Zomato',
+      content: `The Fearless Email That Changed Everything
+
+Kabir's fearless attitude and his will to think about taking up big roles at such a young age was truly impeccable. This story is not known to anyone, but it showcases his incredible courage and determination.
+
+Deepinder Goyal (founder of Zomato) added a post on LinkedIn for a position open for Chief of Staff, and Kabir decided to apply. He sent an email to Deepinder Goyal expressing his interest, not only to apply for the role, but to learn from him, his journey, and the incredible ecosystem he had built.
+
+Here's the email Kabir sent:
+
+Hi Deepinder,
+
+I recently came across your LinkedIn post, and I felt compelled to reach out. I am writing to express my interest in joining Zomato as Chief of Staff not to apply for the role directly but to learn from you, your journey, and the incredible ecosystem you've built. I'm intentionally not attaching a cover letter to keep this email focused and concise.
+
+I am as curious as you were when you started your journey, constantly exploring ways to build a product that adds value to others' lives while solving real problems. My ultimate goal is to create something that makes me as valuable as I aspire to be.
+
+By way of introduction, I'm a final-year student pursuing Statistics, a field I believe will help me navigate data-driven decision-making to contribute meaningfully to any team. I am reaching out to seek a role and learn from your personal experiences, immerse myself in the practical aspects of innovation, and understand how a company like Zomato resonates so deeply with its consumers.
+
+I'd love to get my hands dirty and explore how ideas beyond the bounds of GPT or Google-based research shape impactful products. What drives me is the curiosity to learn how Zomato works at its core even down to understanding what you order from the app to stay so in sync with your consumers.
+
+I look forward to the opportunity to learn from you and contribute to Zomato in any way possible.
+
+Best regards, Kabir Arora
+
+This bold approach managed to get him an internship and eventually led to a Pre-Placement Offer (PPO) at Zomato. Kabir's fearless attitude in reaching out directly to one of India's most successful entrepreneurs demonstrates his exceptional mindset and determination to learn from the best in the industry.
+
+This story remains unknown to most people, but it perfectly encapsulates Kabir's character - his fearlessness, his drive to learn from industry leaders, and his proactive approach to creating opportunities for himself. It's a testament to his belief in taking initiative and his willingness to step outside conventional boundaries to achieve his goals.`
+    },
+    /*{
       type: 'playlist',
       title: 'Kabir\'s Playlist',
       url: 'https://music.youtube.com/playlist?list=PLFgquLnL59alCl_2TQvOiD5Vgm1hCaGSI',
       desc: 'A YouTube Music playlist (dummy).'
-    },
+    },*/
     {
       type: 'audio',
       title: 'Singer Attitude',
       url: 'sample-3s.mp3',
-      desc: 'A short audio clip (dummy).'
+      desc: 'Kabir singing with his friends'
     }
   ];
   window.carouselItems = items;
