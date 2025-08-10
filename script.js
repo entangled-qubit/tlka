@@ -481,16 +481,15 @@ window.addEventListener('DOMContentLoaded', setupHeroPhotoCarousel);
 
 // --- Scattered Background Photos ---
 // To add more images to the scattered background:
-// 1. Add your images to the photos_scattered folder
+// 1. Add your images to the photos_scattered folder (JPG format only)
 // 2. Add the image paths to the images array below
-// Note: HEIC files will be automatically converted to JPG using heic2any library
 function createScatteredBackgroundPhotos() {
   const container = document.querySelector('.background-photos');
   if (!container) return;
   container.innerHTML = '';
   if (window.innerWidth < 900) return;
 
-  // Images to use - all images from photos_scattered folder
+  // Images to use - all images from photos_scattered folder (JPG only)
   const images = [
     'photos_scattered/be674d9d-9fef-413e-8706-10ae0f8e4da9.JPG',
     'photos_scattered/kabir1.jpg',
@@ -501,12 +500,8 @@ function createScatteredBackgroundPhotos() {
     'photos_scattered/kabirs6.jpg',
     'photos_scattered/kabirs7.jpg',
     'photos_scattered/kabirs8.jpg',
-    'photos_scattered/kabirs9.jpg',
-    // HEIC files - these will be converted to JPG
-    'photos_scattered/IMG_2416.HEIC',
-    'photos_scattered/IMG_3586.HEIC',
-    'photos_scattered/kabirs10.HEIC'
-    // Add more images here as needed
+    'photos_scattered/kabirs9.jpg'
+    // Add more JPG images here as needed
     // Example: 'photos_scattered/newphoto.jpg',
   ];
   
@@ -634,7 +629,7 @@ function setupWorksWondersCarousel() {
       url: 'https://www.youtube.com/embed/YSua4vW94Vk',
      
     },
-    {
+/*    {
       type: 'youtube',
       title: 'A small fun vlog created by Kabir in his first year of college',
       url: 'https://www.youtube.com/embed/3JZ_D3ELwOQ',
@@ -651,7 +646,7 @@ function setupWorksWondersCarousel() {
       title: 'Kabir Music',
       url: 'https://www.youtube.com/embed/9bZkp7q19f0',
       desc: 'Music jam session (dummy).'
-    },
+    },*/
     {
       type: 'chatgpt',
       title: 'Remembering Kabir Arora: A Life of Relentless Curiosity and Purpose',
@@ -716,31 +711,35 @@ He was building himself—with honesty, clarity, and purpose.`
       type: 'chatgpt',
       title: 'That Email',
       desc: 'How Kabir\'s fearless attitude led to an internship and PPO at Zomato',
-      content: `The Fearless Email That Changed Everything
+      content: `<h3>The Fearless Email </h2>
 
-Kabir's fearless attitude and his will to think about taking up big roles at such a young age was truly impeccable. This story is not known to anyone, but it showcases his incredible courage and determination.
+<p>Kabir's fearless attitude and his will to think about taking up big roles at such a young age was truly impeccable. This story is not known to anyone, but it showcases his incredible courage and determination.</p>
 
-Deepinder Goyal (founder of Zomato) added a post on LinkedIn for a position open for Chief of Staff, and Kabir decided to apply. He sent an email to Deepinder Goyal expressing his interest, not only to apply for the role, but to learn from him, his journey, and the incredible ecosystem he had built.
+<h3>The Opportunity</h3>
+<p>Deepinder Goyal (founder of Zomato) added a post on LinkedIn for a position open for Chief of Staff, and Kabir decided to apply. He sent an email to Deepinder Goyal expressing his interest, not only to apply for the role, but to learn from him, his journey, and the incredible ecosystem he had built.</p>
 
-Here's the email Kabir sent:
+<h3>The Email</h3>
+<p>Here's the email Kabir sent:</p>
 
-Hi Deepinder,
+<p>Hi Deepinder,</p>
 
-I recently came across your LinkedIn post, and I felt compelled to reach out. I am writing to express my interest in joining Zomato as Chief of Staff not to apply for the role directly but to learn from you, your journey, and the incredible ecosystem you've built. I'm intentionally not attaching a cover letter to keep this email focused and concise.
+<p>I recently came across your LinkedIn post, and I felt compelled to reach out. I am writing to express my interest in joining Zomato as Chief of Staff not to apply for the role directly but to learn from you, your journey, and the incredible ecosystem you've built. I'm intentionally not attaching a cover letter to keep this email focused and concise.</p>
 
-I am as curious as you were when you started your journey, constantly exploring ways to build a product that adds value to others' lives while solving real problems. My ultimate goal is to create something that makes me as valuable as I aspire to be.
+<p>I am as curious as you were when you started your journey, constantly exploring ways to build a product that adds value to others' lives while solving real problems. My ultimate goal is to create something that makes me as valuable as I aspire to be.</p>
 
-By way of introduction, I'm a final-year student pursuing Statistics, a field I believe will help me navigate data-driven decision-making to contribute meaningfully to any team. I am reaching out to seek a role and learn from your personal experiences, immerse myself in the practical aspects of innovation, and understand how a company like Zomato resonates so deeply with its consumers.
+<p>By way of introduction, I'm a final-year student pursuing Statistics, a field I believe will help me navigate data-driven decision-making to contribute meaningfully to any team. I am reaching out to seek a role and learn from your personal experiences, immerse myself in the practical aspects of innovation, and understand how a company like Zomato resonates so deeply with its consumers.</p>
 
-I'd love to get my hands dirty and explore how ideas beyond the bounds of GPT or Google-based research shape impactful products. What drives me is the curiosity to learn how Zomato works at its core even down to understanding what you order from the app to stay so in sync with your consumers.
+<p>I'd love to get my hands dirty and explore how ideas beyond the bounds of GPT or Google-based research shape impactful products. What drives me is the curiosity to learn how Zomato works at its core even down to understanding what you order from the app to stay so in sync with your consumers.</p>
 
-I look forward to the opportunity to learn from you and contribute to Zomato in any way possible.
+<p>I look forward to the opportunity to learn from you and contribute to Zomato in any way possible.</p>
 
-Best regards, Kabir Arora
+<p>Best regards, Kabir Arora</p>
 
-This bold approach managed to get him an internship and eventually led to a Pre-Placement Offer (PPO) at Zomato. Kabir's fearless attitude in reaching out directly to one of India's most successful entrepreneurs demonstrates his exceptional mindset and determination to learn from the best in the industry.
+<h3>The Outcome</h3>
+<p>This bold approach managed to get him an internship and eventually led to a Pre-Placement Offer (PPO) at Zomato. Kabir's fearless attitude in reaching out directly to one of India's most successful entrepreneurs demonstrates his exceptional mindset and determination to learn from the best in the industry.</p>
 
-This story remains unknown to most people, but it perfectly encapsulates Kabir's character - his fearlessness, his drive to learn from industry leaders, and his proactive approach to creating opportunities for himself. It's a testament to his belief in taking initiative and his willingness to step outside conventional boundaries to achieve his goals.`
+<h3>The Legacy</h3>
+<p>This story remains unknown to most people, but it perfectly encapsulates Kabir's character - his fearlessness, his drive to learn from industry leaders, and his proactive approach to creating opportunities for himself. It's a testament to his belief in taking initiative and his willingness to step outside conventional boundaries to achieve his goals.</p>`
     },
     /*{
       type: 'playlist',
@@ -751,7 +750,7 @@ This story remains unknown to most people, but it perfectly encapsulates Kabir's
     {
       type: 'audio',
       title: 'Singer Attitude',
-      url: 'sample-3s.mp3',
+      url: 'terejaisayaar.mp3',
       desc: 'Kabir singing with his friends'
     }
   ];
