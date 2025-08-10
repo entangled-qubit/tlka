@@ -3,16 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Start - Landing Page</title>
+  <title>TLKA</title>
   <!-- Link to external CSS -->
   <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/jpeg" href="favicon-source.jpg">
 </head>
 <body>
   <!-- Header / Navigation Bar -->
   <header class="navbar">
     <div class="container nav-container">
       <div class="logo">
-        <img src="tlka.jpg" alt="TLKA" class="logo-image">
+        <a href="/">
+          <img src="tlka.jpg" alt="TLKA" class="logo-image">
+        </a>
       </div>
       <nav>
         <ul class="nav-links">
@@ -79,8 +82,8 @@
       </div>
       <div class="carousel-dots"></div>
       <div class="stories-links" style="text-align:center; margin-top:1.5rem;">
-        <a href="stories.html#share-form" class="cta-btn primary" style="margin-right:1rem;">Share Memories</a>
-        <a href="stories.html" class="cta-btn secondary" style="margin-right:1rem;">Read more stories</a>
+        <a href="/stories#share-form" class="cta-btn primary" style="margin-right:1rem;">Share Memories</a>
+        <a href="/stories" class="cta-btn secondary" style="margin-right:1rem;">Read more stories</a>
       </div>
     </div>
   </section>
@@ -107,7 +110,7 @@
         <input type="hidden" name="_subject" value="New Contact Form Submission - TLKA Memorial Website">
         <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_next" value="https://tlkabirarora.com/thank-you.html">
+        <input type="hidden" name="_next" value="https://tlkabirarora.com/thank-you">
         
         <div class="form-group">
           <label for="name">Name</label>
@@ -140,4 +143,3 @@
   </div>
 </body>
 </html>
-

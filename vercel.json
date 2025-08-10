@@ -1,0 +1,29 @@
+{
+  "rewrites": [
+    {
+      "source": "/stories",
+      "destination": "/stories.html"
+    },
+    {
+      "source": "/thank-you",
+      "destination": "/thank-you.html"
+    },
+    {
+      "source": "/:path*/",
+      "destination": "/:path*/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/stories.html",
+      "destination": "/stories",
+      "permanent": true
+    },
+    {
+      "source": "/thank-you.html",
+      "destination": "/thank-you",
+      "permanent": true
+    }
+  ],
+  "cleanUrls": true
+}
