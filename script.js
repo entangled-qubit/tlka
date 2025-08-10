@@ -80,12 +80,6 @@ window.addEventListener('DOMContentLoaded', () => {
   revealOnScroll();
 });
 
-// Optional: Prevent form submission (demo only)
-document.querySelector('.contact-form').addEventListener('submit', function(e) {
-  e.preventDefault();
-  alert('Thank you for contacting us!');
-});
-
 // --- Section fade based on distance from viewport center ---
 function updateSectionFades() {
   const sections = document.querySelectorAll('.fade-section');
