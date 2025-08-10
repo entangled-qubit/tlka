@@ -401,8 +401,42 @@ function setupHeroSlideshow() {
 window.addEventListener('DOMContentLoaded', setupHeroSlideshow);
 
 // --- Hero Photo Carousel ---
+// To add more images to the main carousel:
+// 1. Add your images to the images_main folder
+// 2. Add the image paths to the imagesMainFiles array below
+// Note: For best results, use JPG images as HEIC may not display in all browsers
 function setupHeroPhotoCarousel() {
-  const photos = Array.from(document.querySelectorAll('.memorial-photo'));
+  const heroPhotoContainer = document.querySelector('.hero-photo');
+  if (!heroPhotoContainer) return;
+
+  // Get all images from images_main folder
+  // In a real implementation, this would be dynamically loaded
+  // For now, we'll use a predefined list but make it easy to extend
+  const imagesMainFiles = [
+    'images_main/kabir1.jpg',
+    'images_main/kabir2.jpg',
+    'images_main/kabir3.jpg'
+    // Add more images here as needed
+    // Example: 'images_main/newphoto.jpg',
+  ];
+
+  // Clear existing photos
+  heroPhotoContainer.innerHTML = '';
+
+  // Create photo elements for all images in images_main folder
+  imagesMainFiles.forEach((src, index) => {
+    const img = document.createElement('img');
+    img.src = src;
+    img.alt = 'In Loving Memory of Kabir';
+    img.className = 'memorial-photo';
+    if (index === 0) {
+      img.classList.add('active');
+    }
+    img.setAttribute('data-photo', `kabir${index + 1}`);
+    heroPhotoContainer.appendChild(img);
+  });
+
+  const photos = Array.from(heroPhotoContainer.querySelectorAll('.memorial-photo'));
   if (photos.length < 2) return; // Need at least 2 photos for carousel
 
   let currentPhotoIndex = 0;
@@ -435,11 +469,8 @@ function setupHeroPhotoCarousel() {
   }
 
   // Pause on hover
-  const heroPhoto = document.querySelector('.hero-photo');
-  if (heroPhoto) {
-    heroPhoto.addEventListener('mouseenter', stopPhotoTimer);
-    heroPhoto.addEventListener('mouseleave', startPhotoTimer);
-  }
+  heroPhotoContainer.addEventListener('mouseenter', stopPhotoTimer);
+  heroPhotoContainer.addEventListener('mouseleave', startPhotoTimer);
 
   // Initialize
   showPhoto(0); // Start with first photo
@@ -448,14 +479,37 @@ function setupHeroPhotoCarousel() {
 
 window.addEventListener('DOMContentLoaded', setupHeroPhotoCarousel);
 
+// --- Scattered Background Photos ---
+// To add more images to the scattered background:
+// 1. Add your images to the photos_scattered folder
+// 2. Add the image paths to the images array below
+// Note: HEIC files will be automatically converted to JPG using heic2any library
 function createScatteredBackgroundPhotos() {
   const container = document.querySelector('.background-photos');
   if (!container) return;
   container.innerHTML = '';
   if (window.innerWidth < 900) return;
 
-  // Images to use
-  const images = ['kabir1.jpg', 'kabir2.jpg', 'kabir3.jpg', 'kabir4.jpg'];
+  // Images to use - all images from photos_scattered folder
+  const images = [
+    'photos_scattered/be674d9d-9fef-413e-8706-10ae0f8e4da9.JPG',
+    'photos_scattered/kabir1.jpg',
+    'photos_scattered/kabir2.jpg',
+    'photos_scattered/kabir3.jpg',
+    'photos_scattered/kabir4.jpg',
+    'photos_scattered/kabirs5.jpg',
+    'photos_scattered/kabirs6.jpg',
+    'photos_scattered/kabirs7.jpg',
+    'photos_scattered/kabirs8.jpg',
+    'photos_scattered/kabirs9.jpg',
+    // HEIC files - these will be converted to JPG
+    'photos_scattered/IMG_2416.HEIC',
+    'photos_scattered/IMG_3586.HEIC',
+    'photos_scattered/kabirs10.HEIC'
+    // Add more images here as needed
+    // Example: 'photos_scattered/newphoto.jpg',
+  ];
+  
   // Number of photos
   const count = 13 + Math.floor(Math.random() * 4); // 13, 14, 15, or 16
   // Sizes in px (reduced by ~25%)
@@ -490,7 +544,11 @@ function createScatteredBackgroundPhotos() {
       const adjustedLeft = (col === cols - 1) ? Math.min(left, areaW - size.w) : left;
       // Create image
       const img = document.createElement('img');
-      img.src = images[Math.floor(Math.random() * images.length)];
+      const randomImage = images[Math.floor(Math.random() * images.length)];
+      
+      // For all images, use them directly
+      // This ensures all images are visible regardless of format
+      img.src = randomImage;
       img.className = 'background-photo';
       img.style.width = size.w + 'px';
       img.style.height = size.h + 'px';
@@ -500,13 +558,23 @@ function createScatteredBackgroundPhotos() {
       img.style.transform = `rotate(${rotate}deg)`;
       img.alt = '';
       container.appendChild(img);
+      
+      // Add error handling to ensure images are visible even if they fail to load
+      img.addEventListener('error', function() {
+        console.warn('Failed to load image: ' + randomImage);
+        // Keep the image element in the DOM but log the error
+      });
       photoIndex++;
     }
   }
 }
 
-window.addEventListener('DOMContentLoaded', createScatteredBackgroundPhotos);
-window.addEventListener('resize', createScatteredBackgroundPhotos);
+window.addEventListener('DOMContentLoaded', () => {
+  createScatteredBackgroundPhotos();
+});
+window.addEventListener('resize', () => {
+  createScatteredBackgroundPhotos();
+});
 
 // --- Navigation Active State ---
 function setupNavigationActiveState() {
